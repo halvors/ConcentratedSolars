@@ -1,0 +1,36 @@
+[
+{
+  "modid": "examplemod",
+  "name": "Example Mod",
+  "description": "Example placeholder mod.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ExampleDude"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
+
+
+
+[
+{
+"modid": "Concentrated Solars",
+"name": "Concentrated Solars",
+"description": "ConcentratedSolars is an Minecraft mod that aims to add high efficency solar panels, by using mirrors to concentrate the light.",
+"version": "${version}",
+"mcversion": "${mc_version}",
+"updateUrl": "",
+"authors": [
+"halvors"
+],
+"credits": "Thanks to everyone who has contributed to this ongoing project.",
+"logoFile": "logo.png",
+"screenshots": [
+]
+}
+]

@@ -1,7 +1,6 @@
-package concentratedsolars.client;
+package org.halvors.ConcentratedSolars.client;
 
-import net.minecraftforge.client.MinecraftForgeClient;
-import concentratedsolars.CommonProxy;
+import org.halvors.ConcentratedSolars.common.CommonProxy;
 
 public class ClientProxy extends CommonProxy {
 	@Override

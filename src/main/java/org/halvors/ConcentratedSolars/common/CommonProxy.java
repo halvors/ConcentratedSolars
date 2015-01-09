@@ -1,4 +1,4 @@
-package concentratedsolars;
+package org.halvors.ConcentratedSolars.common;
 
 public class CommonProxy {
 	// Client stuff
