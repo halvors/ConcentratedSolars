@@ -17,7 +17,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "ConcentratedSolars", name = "ConcentratedSolars", version = "0.0.1", guiFactory = "org.halvors.ConcentratedSolars.client.gui.ConfigGuiFactory")
+@Mod(modid = "ConcentratedSolars", name = "ConcentratedSolars", version = "0.0.1", guiFactory = "org.halvors.ConcentratedSolars.client.gui.GuiHandler")
 public class ConcentratedSolars {
 	// Says where the client and server 'proxy' code is loaded.
 	@SidedProxy(clientSide = "org.halvors.ConcentratedSolars.client.ClientProxy", serverSide = "org.halvors.ConcentratedSolars.common.CommonProxy")
