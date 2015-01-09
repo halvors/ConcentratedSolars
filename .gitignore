@@ -23,6 +23,5 @@ output
 /.settings
 /bin
 /eclipse
-build.gradle
 *.txt
 gradlew
