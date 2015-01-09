@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 
 public class CreativeTabConcentratedSolars extends CreativeTabs {
 	public CreativeTabConcentratedSolars() {
-		super("tabConsentratedSolars");
+		super("tabConcentratedSolars");
 	}
 
 	@Override
