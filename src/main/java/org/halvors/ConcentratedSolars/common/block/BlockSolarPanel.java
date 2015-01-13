@@ -34,7 +34,7 @@ public class BlockSolarPanel extends BlockContainer {
         if (tileEntity == null || player.isSneaking()) {
                 return false;
         }
-	    //code to open gui explained later
+        
 	    player.openGui(ConcentratedSolars.instance, 0, world, x, y, z);
 	    
 	    return true;
