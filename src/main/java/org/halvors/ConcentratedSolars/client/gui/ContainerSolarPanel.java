@@ -16,6 +16,8 @@ public class ContainerSolarPanel extends Container {
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return ((IInventory) tileEntity).isUseableByPlayer(player);
+		//return ((IInventory) tileEntity).isUseableByPlayer(player);
+	
+		return true;
 	}
 }

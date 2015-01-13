@@ -15,7 +15,7 @@ public class GuiHandler implements IGuiHandler {
 		TileEntity tileEntity = world.getTileEntity(x, y, z);
 		
 		if (tileEntity instanceof TileEntitySolarPanel) {
-			return new GuiSolarPanel(player.inventory, (TileEntitySolarPanel) tileEntity);
+			return new ContainerSolarPanel(player.inventory, (TileEntitySolarPanel) tileEntity);
 		}
 		
 		return null;
