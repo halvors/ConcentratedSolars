@@ -47,13 +47,12 @@ public class ConcentratedSolars {
 	public void init(FMLInitializationEvent event) {
 		proxy.registerRenderers();	
 		
-		// Initialize blocks.
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+		
 		addBlocks();
 		addEntities();
 		addItems();
 		addRecipes();
-		
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 	}
 
 	@EventHandler
@@ -62,12 +61,15 @@ public class ConcentratedSolars {
 	}
 
 	public void addBlocks() {
+		// Create blocks.
 		blockSolarPanel = new BlockSolarPanel("blockSolarPanel");
 
+		// Register blocks.
 		GameRegistry.registerBlock(blockSolarPanel, ItemBlockSolarPanel.class, "blockSolarPanel");
 	}
 	
 	public void addEntities() {
+		// Register tile entities.
 		GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "tileEntitySolarPanel");
 	}
 
@@ -76,6 +78,7 @@ public class ConcentratedSolars {
 	}
 
 	public void addRecipes() {
+		// Register recipies.
 		GameRegistry.addRecipe(new ItemStack(blockSolarPanel), "iii", "g", "i", 'i',
 				Items.iron_ingot, 'g', Items.gold_ingot);
 	}
