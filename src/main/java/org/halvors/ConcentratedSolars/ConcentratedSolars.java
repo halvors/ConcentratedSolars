@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+import org.halvors.ConcentratedSolars.client.gui.GuiHandler;
 import org.halvors.ConcentratedSolars.common.CommonProxy;
 import org.halvors.ConcentratedSolars.common.block.BlockSolarPanel;
 import org.halvors.ConcentratedSolars.common.item.ItemBlockSolarPanel;
@@ -16,6 +17,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = "ConcentratedSolars", name = "ConcentratedSolars", version = "0.0.1")
@@ -43,14 +45,15 @@ public class ConcentratedSolars {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		proxy.registerRenderers();
-		
-		GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "tileEntitySolarPanel");
+		proxy.registerRenderers();	
 		
 		// Initialize blocks.
 		addBlocks();
+		addEntities();
 		addItems();
 		addRecipes();
+		
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 	}
 
 	@EventHandler
@@ -62,6 +65,10 @@ public class ConcentratedSolars {
 		blockSolarPanel = new BlockSolarPanel("blockSolarPanel");
 
 		GameRegistry.registerBlock(blockSolarPanel, ItemBlockSolarPanel.class, "blockSolarPanel");
+	}
+	
+	public void addEntities() {
+		GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "tileEntitySolarPanel");
 	}
 
 	public void addItems() {
