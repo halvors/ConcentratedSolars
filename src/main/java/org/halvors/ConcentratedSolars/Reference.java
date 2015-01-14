@@ -4,6 +4,7 @@ public class Reference {
 	/** 
 	 * The official name of the mod.
 	 */
+	public static final String ID = "ConcentratedSolars";
 	public static final String NAME = "Concentrated Solars";
 	public static final String MAJOR_VERSION = "@MAJOR@";
 	public static final String MINOR_VERSION = "@MINOR@";

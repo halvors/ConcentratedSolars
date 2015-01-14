@@ -24,14 +24,14 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "ConcentratedSolars", name = "ConcentratedSolars", version = "0.0.1")
+@Mod(modid = Reference.ID, name = Reference.NAME, version = Reference.VERSION)
 public class ConcentratedSolars {
 	// Says where the client and server 'proxy' code is loaded.
 	@SidedProxy(clientSide = "org.halvors.ConcentratedSolars.client.ClientProxy", serverSide = "org.halvors.ConcentratedSolars.common.CommonProxy")
 	public static CommonProxy proxy;
 
 	// The instance of your mod that Forge uses.
-	@Instance(value = "ConcentratedSolars")
+	@Instance(value = Reference.ID)
 	public static ConcentratedSolars instance;
 
 	// Items
@@ -80,21 +80,23 @@ public class ConcentratedSolars {
 	}
 
 	public void addItems() {
+		// Create items.
 		itemMirror = new ItemMirror();
 		itemParabol = new ItemParabol();
 		
+		// Register items.
 		GameRegistry.registerItem(itemMirror, "itemMirror");
 		GameRegistry.registerItem(itemParabol, "itemParabol");
 	}
 
 	public void addRecipes() {
-		// Register recipies.
+		// Register recipes.
 		GameRegistry.addRecipe(new ItemStack(itemMirror), 
 				"ggg", "iii", "ggg", 
 				'g', Blocks.glass,
 				'i', Items.iron_ingot);
 		
-		GameRegistry.addRecipe(new ItemStack(itemMirror), 
+		GameRegistry.addRecipe(new ItemStack(itemParabol), 
 				"m", "mmm", "m", 
 				'm', itemMirror);
 	}
