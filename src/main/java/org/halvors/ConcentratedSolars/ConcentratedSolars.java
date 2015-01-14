@@ -8,10 +8,13 @@ import net.minecraft.item.ItemStack;
 
 import org.halvors.ConcentratedSolars.client.gui.GuiHandler;
 import org.halvors.ConcentratedSolars.common.CommonProxy;
+import org.halvors.ConcentratedSolars.common.block.BlockDishStirling;
 import org.halvors.ConcentratedSolars.common.block.BlockSolarPanel;
+import org.halvors.ConcentratedSolars.common.item.ItemDishStirling;
 import org.halvors.ConcentratedSolars.common.item.ItemMirror;
 import org.halvors.ConcentratedSolars.common.item.ItemParabol;
 import org.halvors.ConcentratedSolars.common.item.ItemSolarPanel;
+import org.halvors.ConcentratedSolars.common.tileentity.TileEntityDishStirling;
 import org.halvors.ConcentratedSolars.common.tileentity.TileEntitySolarPanel;
 
 import cpw.mods.fml.common.Mod;
@@ -40,6 +43,7 @@ public class ConcentratedSolars {
 	
 	// Blocks
 	public static Block blockSolarPanel;
+	public static Block blockDishStirling;
 
 	// Creative tab
 	public static CreativeTabConcentratedSolars tabConcentratedSolars = new CreativeTabConcentratedSolars();
@@ -53,10 +57,12 @@ public class ConcentratedSolars {
 	public void init(FMLInitializationEvent event) {
 		proxy.registerRenderers();	
 		
+		// Register GUI handler.
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		
+		// Call functions for adding blocks etc.
 		addBlocks();
-		addEntities();
+		addTileEntities();
 		addItems();
 		addRecipes();
 	}
@@ -69,14 +75,17 @@ public class ConcentratedSolars {
 	public void addBlocks() {
 		// Create blocks.
 		blockSolarPanel = new BlockSolarPanel();
+		blockDishStirling = new BlockDishStirling();
 
 		// Register blocks.
 		GameRegistry.registerBlock(blockSolarPanel, ItemSolarPanel.class, "blockSolarPanel");
+		GameRegistry.registerBlock(blockDishStirling, ItemDishStirling.class, "blockDishStirling");
 	}
 	
-	public void addEntities() {
+	public void addTileEntities() {
 		// Register tile entities.
 		GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "tileEntitySolarPanel");
+		GameRegistry.registerTileEntity(TileEntityDishStirling.class, "tileEntityDishStirling");
 	}
 
 	public void addItems() {
@@ -96,8 +105,13 @@ public class ConcentratedSolars {
 				'g', Blocks.glass,
 				'i', Items.iron_ingot);
 		
-		GameRegistry.addRecipe(new ItemStack(itemParabol), 
-				"m", "mmm", "m", 
+		GameRegistry.addShapedRecipe(new ItemStack(itemParabol), 
+				" m ", "mmm", " m ", 
 				'm', itemMirror);
+		
+		GameRegistry.addShapedRecipe(new ItemStack(blockDishStirling), 
+				" p ", "psp", " p ", 
+				'p', itemParabol,
+				's', blockSolarPanel);
 	}
 }
