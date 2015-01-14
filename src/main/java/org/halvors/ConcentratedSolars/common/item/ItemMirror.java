@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 
 public class ItemMirror extends Item {
 	public ItemMirror() {
+		setUnlocalizedName("itemMirror");
 		setCreativeTab(ConcentratedSolars.tabConcentratedSolars);
 		setTextureName(Reference.PREFIX + "itemMirror");
 	}

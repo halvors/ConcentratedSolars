@@ -68,7 +68,7 @@ public class ConcentratedSolars {
 
 	public void addBlocks() {
 		// Create blocks.
-		blockSolarPanel = new BlockSolarPanel("blockSolarPanel");
+		blockSolarPanel = new BlockSolarPanel();
 
 		// Register blocks.
 		GameRegistry.registerBlock(blockSolarPanel, ItemSolarPanel.class, "blockSolarPanel");

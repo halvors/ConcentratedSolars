@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 
 public class ItemParabol extends Item {
 	public ItemParabol() {
+		setUnlocalizedName("itemParabol");
 		setCreativeTab(ConcentratedSolars.tabConcentratedSolars);
 		setTextureName(Reference.PREFIX + "itemParabol");
 	}

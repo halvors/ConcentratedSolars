@@ -19,10 +19,10 @@ public class BlockSolarPanel extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	public static IIcon topIcon, sideIcon, bottomIcon;
 	
-	public BlockSolarPanel(String name) {
+	public BlockSolarPanel() {
 		super(Material.iron);
 
-		setBlockName(name);
+		setBlockName("blockSolarPanel");
 		setHardness(3.5F);
 		setResistance(8F);
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.3F, 1.0F);
