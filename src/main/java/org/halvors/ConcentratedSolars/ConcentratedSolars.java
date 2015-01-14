@@ -1,13 +1,17 @@
 package org.halvors.ConcentratedSolars;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import org.halvors.ConcentratedSolars.client.gui.GuiHandler;
 import org.halvors.ConcentratedSolars.common.CommonProxy;
 import org.halvors.ConcentratedSolars.common.block.BlockSolarPanel;
-import org.halvors.ConcentratedSolars.common.item.ItemBlockSolarPanel;
+import org.halvors.ConcentratedSolars.common.item.ItemMirror;
+import org.halvors.ConcentratedSolars.common.item.ItemParabol;
+import org.halvors.ConcentratedSolars.common.item.ItemSolarPanel;
 import org.halvors.ConcentratedSolars.common.tileentity.TileEntitySolarPanel;
 
 import cpw.mods.fml.common.Mod;
@@ -31,7 +35,9 @@ public class ConcentratedSolars {
 	public static ConcentratedSolars instance;
 
 	// Items
-
+	public static Item itemMirror;
+	public static Item itemParabol;
+	
 	// Blocks
 	public static Block blockSolarPanel;
 
@@ -65,7 +71,7 @@ public class ConcentratedSolars {
 		blockSolarPanel = new BlockSolarPanel("blockSolarPanel");
 
 		// Register blocks.
-		GameRegistry.registerBlock(blockSolarPanel, ItemBlockSolarPanel.class, "blockSolarPanel");
+		GameRegistry.registerBlock(blockSolarPanel, ItemSolarPanel.class, "blockSolarPanel");
 	}
 	
 	public void addEntities() {
@@ -74,12 +80,22 @@ public class ConcentratedSolars {
 	}
 
 	public void addItems() {
+		itemMirror = new ItemMirror();
+		itemParabol = new ItemParabol();
 		
+		GameRegistry.registerItem(itemMirror, "itemMirror");
+		GameRegistry.registerItem(itemParabol, "itemParabol");
 	}
 
 	public void addRecipes() {
 		// Register recipies.
-		GameRegistry.addRecipe(new ItemStack(blockSolarPanel), "iii", "g", "i", 'i',
-				Items.iron_ingot, 'g', Items.gold_ingot);
+		GameRegistry.addRecipe(new ItemStack(itemMirror), 
+				"ggg", "iii", "ggg", 
+				'g', Blocks.glass,
+				'i', Items.iron_ingot);
+		
+		GameRegistry.addRecipe(new ItemStack(itemMirror), 
+				"m", "mmm", "m", 
+				'm', itemMirror);
 	}
 }
