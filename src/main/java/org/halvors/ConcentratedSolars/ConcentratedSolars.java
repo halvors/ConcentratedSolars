@@ -100,7 +100,7 @@ public class ConcentratedSolars {
 
 	public void addRecipes() {
 		// Register recipes.
-		GameRegistry.addRecipe(new ItemStack(itemMirror), 
+		GameRegistry.addShapedRecipe(new ItemStack(itemMirror), 
 				"ggg", "iii", "ggg", 
 				'g', Blocks.glass,
 				'i', Items.iron_ingot);
