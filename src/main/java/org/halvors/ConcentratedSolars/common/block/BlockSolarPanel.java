@@ -28,6 +28,11 @@ public class BlockSolarPanel extends BlockContainer {
 	}
 	
 	@Override
+    public boolean isOpaqueCube() {
+		return false;
+	}
+	
+	@Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float what, float these, float are) {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         
