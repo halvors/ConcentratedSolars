@@ -1,15 +1,32 @@
 package org.halvors.ConcentratedSolars.common.tileentity;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.Constants.NBT;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.AdvancedModelLoader;
+import net.minecraftforge.client.model.IModelCustom;
 
-public class TileEntityDishStirling extends TileEntityContainer {
+import org.lwjgl.opengl.GL11;
+
+
+public class TileEntityDishStirling extends TileEntitySpecialRenderer {
+	private IModelCustom model;
+	
 	public TileEntityDishStirling() {
-		
+		model = AdvancedModelLoader.loadModel(new ResourceLocation("/assets/model/diskStirling.obj"));
+	}
+
+	@Override
+	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f) {
+		// OpenGL stuff
+        GL11.glPushMatrix();
+        GL11.glTranslated(x, y, z);
+
+        // Bind the texture and render the model
+        //bindTexture(casinoTexture);
+        model.renderAll();
+
+        // OpenGL stuff to put everything back
+        GL11.glPopMatrix();
 	}
 }
