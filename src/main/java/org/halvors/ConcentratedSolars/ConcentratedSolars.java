@@ -62,8 +62,8 @@ public class ConcentratedSolars {
 		
 		// Call functions for adding blocks etc.
 		addBlocks();
-		addTileEntities();
 		addItems();
+		addTileEntities();
 		addRecipes();
 	}
 
@@ -81,12 +81,6 @@ public class ConcentratedSolars {
 		GameRegistry.registerBlock(blockSolarPanel, ItemSolarPanel.class, "blockSolarPanel");
 		GameRegistry.registerBlock(blockDishStirling, ItemDishStirling.class, "blockDishStirling");
 	}
-	
-	public void addTileEntities() {
-		// Register tile entities.
-		GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "tileEntitySolarPanel");
-		GameRegistry.registerTileEntity(TileEntityDishStirling.class, "tileEntityDishStirling");
-	}
 
 	public void addItems() {
 		// Create items.
@@ -96,6 +90,12 @@ public class ConcentratedSolars {
 		// Register items.
 		GameRegistry.registerItem(itemMirror, "itemMirror");
 		GameRegistry.registerItem(itemParabol, "itemParabol");
+	}
+	
+	public void addTileEntities() {
+		// Register tile entities.
+		GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "tileEntitySolarPanel");
+		GameRegistry.registerTileEntity(TileEntityDishStirling.class, "tileEntityDishStirling");
 	}
 
 	public void addRecipes() {
