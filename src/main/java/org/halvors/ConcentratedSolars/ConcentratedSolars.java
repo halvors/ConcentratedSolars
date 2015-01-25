@@ -69,7 +69,7 @@ public class ConcentratedSolars {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		
+		// Nothing to see here.
 	}
 
 	public void addBlocks() {
