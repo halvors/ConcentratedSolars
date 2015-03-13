@@ -3,18 +3,12 @@ package org.halvors.ConcentratedSolars;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import org.halvors.ConcentratedSolars.client.gui.GuiHandler;
 import org.halvors.ConcentratedSolars.common.CommonProxy;
-import org.halvors.ConcentratedSolars.common.block.BlockDishStirling;
 import org.halvors.ConcentratedSolars.common.block.BlockSolarPanel;
-import org.halvors.ConcentratedSolars.common.item.ItemDishStirling;
-import org.halvors.ConcentratedSolars.common.item.ItemMirror;
-import org.halvors.ConcentratedSolars.common.item.ItemParabol;
 import org.halvors.ConcentratedSolars.common.item.ItemSolarPanel;
-import org.halvors.ConcentratedSolars.common.tileentity.TileEntityDishStirling;
 import org.halvors.ConcentratedSolars.common.tileentity.TileEntitySolarPanel;
 
 import cpw.mods.fml.common.Mod;
@@ -38,12 +32,9 @@ public class ConcentratedSolars {
 	public static ConcentratedSolars instance;
 
 	// Items
-	public static Item itemMirror;
-	public static Item itemParabol;
 	
 	// Blocks
 	public static Block blockSolarPanel;
-	public static Block blockDishStirling;
 
 	// Creative tab
 	public static CreativeTabConcentratedSolars tabConcentratedSolars = new CreativeTabConcentratedSolars();
@@ -75,43 +66,23 @@ public class ConcentratedSolars {
 	public void addBlocks() {
 		// Create blocks.
 		blockSolarPanel = new BlockSolarPanel();
-		blockDishStirling = new BlockDishStirling();
 
 		// Register blocks.
 		GameRegistry.registerBlock(blockSolarPanel, ItemSolarPanel.class, "blockSolarPanel");
-		GameRegistry.registerBlock(blockDishStirling, ItemDishStirling.class, "blockDishStirling");
 	}
 
 	public void addItems() {
 		// Create items.
-		itemMirror = new ItemMirror();
-		itemParabol = new ItemParabol();
 		
 		// Register items.
-		GameRegistry.registerItem(itemMirror, "itemMirror");
-		GameRegistry.registerItem(itemParabol, "itemParabol");
 	}
 	
 	public void addTileEntities() {
 		// Register tile entities.
 		GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "tileEntitySolarPanel");
-		GameRegistry.registerTileEntity(TileEntityDishStirling.class, "tileEntityDishStirling");
 	}
 
 	public void addRecipes() {
 		// Register recipes.
-		GameRegistry.addShapedRecipe(new ItemStack(itemMirror), 
-				"ggg", "iii", "ggg", 
-				'g', Blocks.glass,
-				'i', Items.iron_ingot);
-		
-		GameRegistry.addShapedRecipe(new ItemStack(itemParabol), 
-				" m ", "mmm", " m ", 
-				'm', itemMirror);
-		
-		GameRegistry.addShapedRecipe(new ItemStack(blockDishStirling), 
-				" p ", "psp", " p ", 
-				'p', itemParabol,
-				's', blockSolarPanel);
 	}
 }
