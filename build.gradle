@@ -1,63 +1,73 @@
 buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-    }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-    }
+	repositories {
+		mavenCentral()
+		jcenter()
+		maven {
+			name = "forge"
+			url = "http://files.minecraftforge.net/maven"
+		}
+		maven {
+			name = "sonatype"
+			url = "https://oss.sonatype.org/content/repositories/snapshots/"
+		}
+		maven {
+			url 'http://maven.novaapi.net/'
+		}
+	}
+	dependencies {
+		classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+//		classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.0'
+		classpath 'us.phildop:gradle-sublimetext-plugin:0.5.3'
+	}
 }
 
+apply plugin: 'java'
 apply plugin: 'forge'
 
-version = "0.0.1"
-group= "org.halvors.ConcentratedSolars" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "ConcentratedSolars"
+version = "0.1"
+group = "nova.sample"
 
 minecraft {
-    version = "1.7.10-10.13.2.1230"
-    runDir = "eclipse"
+	version = minecraft_version + "-" + forge_version
+	runDir = "run"
+}
+
+compileJava {
+	sourceCompatibility = '1.8'
+	targetCompatibility = '1.8'
+	options.encoding = 'UTF-8'
+	options.fork = true
+	options.compilerArgs << '-Xlint'
+}
+
+configurations.all {
+	resolutionStrategy.cacheChangingModulesFor 5, 'minutes'
+}
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+	maven {
+		url 'http://maven.novaapi.net/'
+	}
 }
 
 dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
+    // The production code uses the SLF4J logging API at compile time
+	compile group: "nova.core", name: "NovaCore", version: nova_version, changing: true
 
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
+	runtime group: "nova.wrapper.mc1710", name: "NovaWrapper-MC1.7.10", version: wrapper_version, changing: true
 }
 
-processResources
-{
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+runClient {
+	jvmArgs '-Dfml.coreMods.load=nova.wrapper.mc1710.NovaMinecraftCore'
+}
+runServer {
+	jvmArgs '-Dfml.coreMods.load=nova.wrapper.mc1710.NovaMinecraftCore'
+}
 
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-        
-    // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
+idea {
+	project {
+		languageLevel = "1.8"
+	}
 }
