@@ -3,12 +3,15 @@ package org.halvors.ConcentratedSolars;
 import nova.core.block.BlockFactory;
 import nova.core.block.BlockManager;
 import nova.core.entity.EntityManager;
+import nova.core.game.Game;
 import nova.core.gui.factory.GuiManager;
 import nova.core.item.ItemFactory;
 import nova.core.item.ItemManager;
 import nova.core.loader.Loadable;
 import nova.core.loader.NovaMod;
 import nova.core.nativewrapper.NativeManager;
+import nova.core.recipes.crafting.ItemIngredient;
+import nova.core.recipes.crafting.ShapedCraftingRecipe;
 import nova.core.render.RenderManager;
 import nova.core.render.texture.BlockTexture;
 import org.halvors.ConcentratedSolars.block.BlockSolarPanel;
@@ -76,6 +79,12 @@ public class ConcentratedSolars implements Loadable {
 	}
 
 	public void addRecipes() {
+		// Create recipies.
+		ItemIngredient ironIngotIngredient = ItemIngredient.forDictionary("ingotIron");
+		ItemIngredient goldIngotIngredient = ItemIngredient.forDictionary("ingotGold");
+		ItemIngredient dustRedstoneIngredient = ItemIngredient.forDictionary("dustRedstone");
+
 		// Register recipes.
+		Game.instance.recipeManager.addRecipe(new ShapedCraftingRecipe(itemSolarPanel.makeItem(), "AAA-BBB-CBC-", goldIngotIngredient, dustRedstoneIngredient, ironIngotIngredient));
 	}
 }
