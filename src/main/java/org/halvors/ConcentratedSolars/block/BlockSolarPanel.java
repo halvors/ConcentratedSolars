@@ -1,36 +1,46 @@
-package org.halvors.ConcentratedSolars.common.block;
+package org.halvors.ConcentratedSolars.block;
 
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-
+import nova.core.block.Block;
+import nova.core.block.Stateful;
+import nova.core.block.component.StaticBlockRenderer;
+import nova.core.component.Category;
+import nova.core.component.misc.Collider;
+import nova.core.component.renderer.ItemRenderer;
+import nova.core.component.renderer.StaticRenderer;
+import nova.core.render.model.Model;
+import nova.core.retention.Storable;
+import nova.core.util.transform.shape.Cuboid;
 import org.halvors.ConcentratedSolars.ConcentratedSolars;
-import org.halvors.ConcentratedSolars.Reference;
-import org.halvors.ConcentratedSolars.common.tileentity.TileEntitySolarPanel;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Optional;
 
-public class BlockSolarPanel extends BlockContainer {
-	@SideOnly(Side.CLIENT)
-	public static IIcon topIcon, sideIcon, bottomIcon;
-
+/**
+ * This is simple solar panel block.
+ * @author halvors
+ */
+public class BlockSolarPanel extends Block implements Storable, Stateful {
 	public BlockSolarPanel() {
-		super(Material.iron);
+		add(new StaticBlockRenderer(this)).setTexture((dir) -> Optional.of(ConcentratedSolars.solarPanelTexture));
+		add(new Collider());
+		add(new ItemRenderer(this));
+		add(new Category("buildingBlocks"));
 
+		/*
 		setBlockName("blockSolarPanel");
 		setHardness(3.5F);
 		setResistance(8F);
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.3F, 1.0F);
 		setCreativeTab(ConcentratedSolars.tabConcentratedSolars);
 		setStepSound(soundTypeMetal);
+		*/
 	}
 
+	@Override
+	public String getID() {
+		return "blockSolarPanel";
+	}
+
+	/*
 	@Override
 	public TileEntity createNewTileEntity(World world, int metadata) {
 		return new TileEntitySolarPanel();
@@ -82,4 +92,5 @@ public class BlockSolarPanel extends BlockContainer {
 
 		return true;
 	}
+	*/
 }

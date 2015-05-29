@@ -1,4 +1,4 @@
-package org.halvors.ConcentratedSolars.common.item;
+package org.halvors.ConcentratedSolars.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;

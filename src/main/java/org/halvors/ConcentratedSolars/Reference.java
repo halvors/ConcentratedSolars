@@ -11,7 +11,9 @@ public class Reference {
 	public static final String REVISION_VERSION = "@REVIS@";
 	public static final String BUILD_VERSION = "@BUILD@";
 	public static final String VERSION = MAJOR_VERSION + "." + MINOR_VERSION+ "." + REVISION_VERSION;
-	
+
+	public static final String NOVA_VERSION = "0.0.1";
+
 	/**
 	 * Directory Information
 	 */

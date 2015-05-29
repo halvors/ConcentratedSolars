@@ -1,4 +1,4 @@
-package org.halvors.ConcentratedSolars.common.tileentity;
+package org.halvors.ConcentratedSolars.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

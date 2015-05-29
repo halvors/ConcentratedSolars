@@ -1,54 +1,78 @@
 package org.halvors.ConcentratedSolars;
 
+import nova.core.block.BlockFactory;
+import nova.core.block.BlockManager;
+import nova.core.entity.EntityManager;
+import nova.core.gui.factory.GuiManager;
+import nova.core.item.ItemFactory;
+import nova.core.item.ItemManager;
 import nova.core.loader.Loadable;
+import nova.core.loader.NovaMod;
+import nova.core.nativewrapper.NativeManager;
+import nova.core.render.RenderManager;
+import nova.core.render.texture.BlockTexture;
+import org.halvors.ConcentratedSolars.block.BlockSolarPanel;
 
 /**
- * A test Nova Mod
+ * ConcentratedSolars is a NOVA mod that adds solar power sources to the game.
  *
- * @author Calclavia
+ * @author halvors
  */
-@NovaMod(id = Reference.ID, name = Reference.NAME, version = Reference.VERSION, novaVersion = "0.0.1")
+@NovaMod(id = Reference.ID, name = Reference.NAME, version = Reference.VERSION, novaVersion = Reference.NOVA_VERSION)
 public class ConcentratedSolars implements Loadable {
-	public static ConcentratedSolars instance;
+	// Managers
+	public final BlockManager blockManager;
+	public final ItemManager itemManager;
+	public final RenderManager renderManager;
+	public final EntityManager entityManager;
+	public final NativeManager nativeManager;
+
+	// Blocks
+	public static BlockFactory blockSolarPanel;
+
+	// Textures
+	public static BlockTexture solarPanelTexture;
 
 	// Items
-	
-	// Blocks
-	//public static Block blockSolarPanel;
+	public static ItemFactory itemSolarPanel;
 
 	// Creative tab
 	//public static CreativeTabConcentratedSolars tabConcentratedSolars = new CreativeTabConcentratedSolars();
 
-	public ConcentratedSolars() {
-
+	public ConcentratedSolars(BlockManager blockManager, ItemManager itemManager, RenderManager renderManager, GuiManager guiFactory, EntityManager entityManager, NativeManager nativeManager) {
+		this.blockManager = blockManager;
+		this.itemManager = itemManager;
+		this.renderManager = renderManager;
+		this.entityManager = entityManager;
+		this.nativeManager = nativeManager;
 	}
 
 	@Override
 	public void preInit() {
-		// Call functions for adding blocks etc.
 		addBlocks();
-		addItems();
+		addTextures();
 		addTileEntities();
+		addItems();
 		addRecipes();
 	}
 
 	public void addBlocks() {
 		// Create blocks.
-		//blockSolarPanel = new BlockSolarPanel();
+		blockSolarPanel = blockManager.register(BlockSolarPanel.class);
+	}
 
-		// Register blocks.
-		//GameRegistry.registerBlock(blockSolarPanel, ItemSolarPanel.class, "blockSolarPanel");
+	public void addTextures() {
+		// Create textures.
+		solarPanelTexture = renderManager.registerTexture(new BlockTexture(Reference.ID, "solarPanel"));
+	}
+
+	public void addTileEntities() {
+		// Register tile entities.
 	}
 
 	public void addItems() {
 		// Create items.
-		
-		// Register items.
-	}
-	
-	public void addTileEntities() {
-		// Register tile entities.
-		//GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "tileEntitySolarPanel");
+		itemSolarPanel = itemManager.getItemFromBlock(blockSolarPanel);
 	}
 
 	public void addRecipes() {
