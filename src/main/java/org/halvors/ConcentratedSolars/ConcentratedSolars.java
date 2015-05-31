@@ -27,6 +27,7 @@ public class ConcentratedSolars implements Loadable {
 	public final BlockManager blockManager;
 	public final ItemManager itemManager;
 	public final RenderManager renderManager;
+	public final GuiManager guiManager;
 	public final EntityManager entityManager;
 	public final NativeManager nativeManager;
 
@@ -42,10 +43,11 @@ public class ConcentratedSolars implements Loadable {
 	// Creative tab
 	//public static CreativeTabConcentratedSolars tabConcentratedSolars = new CreativeTabConcentratedSolars();
 
-	public ConcentratedSolars(BlockManager blockManager, ItemManager itemManager, RenderManager renderManager, GuiManager guiFactory, EntityManager entityManager, NativeManager nativeManager) {
+	public ConcentratedSolars(BlockManager blockManager, ItemManager itemManager, RenderManager renderManager, GuiManager guiManager, EntityManager entityManager, NativeManager nativeManager) {
 		this.blockManager = blockManager;
 		this.itemManager = itemManager;
 		this.renderManager = renderManager;
+		this.guiManager = guiManager;
 		this.entityManager = entityManager;
 		this.nativeManager = nativeManager;
 	}
@@ -57,6 +59,7 @@ public class ConcentratedSolars implements Loadable {
 		addTileEntities();
 		addItems();
 		addRecipes();
+		addGuis();
 	}
 
 	public void addBlocks() {
@@ -85,6 +88,11 @@ public class ConcentratedSolars implements Loadable {
 		ItemIngredient dustRedstoneIngredient = ItemIngredient.forDictionary("dustRedstone");
 
 		// Register recipes.
-		Game.instance.recipeManager.addRecipe(new ShapedCraftingRecipe(itemSolarPanel.makeItem(), "AAA-BBB-CBC-", goldIngotIngredient, dustRedstoneIngredient, ironIngotIngredient));
+		Game.instance().recipeManager().addRecipe(new ShapedCraftingRecipe(itemSolarPanel.makeItem(), "AAA-BBB-CBC-", goldIngotIngredient, dustRedstoneIngredient, ironIngotIngredient));
+	}
+
+	public void addGuis() {
+		// Register guis.
+		guiManager.registre(new GuiSolarPanel());
 	}
 }
