@@ -46,7 +46,7 @@ public class GuiSolarPanel extends Gui {
         container1.add(new Button("testbutton8", "I'm FOURTH"));
 
         container1.onGuiEvent((event) -> {
-            event.gui.addInventory("main", ((BlockSolarPanel) event.block.get()).inventory);
+            //event.gui.addInventory("main", ((BlockSolarPanel) event.block.get()).inventory);
             System.out.println("Test GUI initialized! " + event.player.getDisplayName() + " " + event.position);
         }, GuiEvent.BindEvent.class);
 
