@@ -23,14 +23,6 @@ import org.halvors.ConcentratedSolars.block.BlockSolarPanel;
  */
 @NovaMod(id = Reference.ID, name = Reference.NAME, version = Reference.VERSION, novaVersion = Reference.NOVA_VERSION)
 public class ConcentratedSolars implements Loadable {
-	// Managers
-	public final BlockManager blockManager;
-	public final ItemManager itemManager;
-	public final RenderManager renderManager;
-	public final GuiManager guiManager;
-	public final EntityManager entityManager;
-	public final NativeManager nativeManager;
-
 	// Blocks
 	public static BlockFactory blockSolarPanel;
 
@@ -42,6 +34,14 @@ public class ConcentratedSolars implements Loadable {
 
 	// Creative tab
 	//public static CreativeTabConcentratedSolars tabConcentratedSolars = new CreativeTabConcentratedSolars();
+
+	// Managers
+	private final BlockManager blockManager;
+	private final ItemManager itemManager;
+	private final RenderManager renderManager;
+	private final GuiManager guiManager;
+	private final EntityManager entityManager;
+	private final NativeManager nativeManager;
 
 	public ConcentratedSolars(BlockManager blockManager, ItemManager itemManager, RenderManager renderManager, GuiManager guiManager, EntityManager entityManager, NativeManager nativeManager) {
 		this.blockManager = blockManager;
@@ -88,11 +88,11 @@ public class ConcentratedSolars implements Loadable {
 		ItemIngredient dustRedstoneIngredient = ItemIngredient.forDictionary("dustRedstone");
 
 		// Register recipes.
-		Game.instance().recipeManager().addRecipe(new ShapedCraftingRecipe(itemSolarPanel.makeItem(), "AAA-BBB-CBC-", goldIngotIngredient, dustRedstoneIngredient, ironIngotIngredient));
+		Game.recipeManager().addRecipe(new ShapedCraftingRecipe(itemSolarPanel.makeItem(), "AAA-BBB-CBC-", goldIngotIngredient, dustRedstoneIngredient, ironIngotIngredient));
 	}
 
 	public void addGuis() {
 		// Register guis.
-		guiManager.registre(new GuiSolarPanel());
+		guiManager.register(new GuiSolarPanel());
 	}
 }
