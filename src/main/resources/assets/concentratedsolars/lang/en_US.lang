@@ -1,0 +1,8 @@
+# Concentrated Solars Language File
+# @author halvors
+
+# Blocks
+tile.blockSolarPanel.name=Solar panel
+
+# Category
+itemGroup.categoryConcentratedSolars=Concentrated Solars
