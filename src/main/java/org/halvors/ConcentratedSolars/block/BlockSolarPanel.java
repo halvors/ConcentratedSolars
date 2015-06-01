@@ -1,44 +1,63 @@
 package org.halvors.ConcentratedSolars.block;
 
-import nova.core.block.Block;
-import nova.core.block.Stateful;
 import nova.core.block.component.StaticBlockRenderer;
-import nova.core.component.Category;
 import nova.core.component.misc.Collider;
-import nova.core.component.renderer.ItemRenderer;
-import nova.core.component.renderer.StaticRenderer;
-import nova.core.render.model.Model;
-import nova.core.retention.Storable;
+import nova.core.game.Game;
+import nova.core.inventory.Inventory;
+import nova.core.inventory.InventorySimple;
+import nova.core.network.PacketHandler;
 import nova.core.util.transform.shape.Cuboid;
 import org.halvors.ConcentratedSolars.ConcentratedSolars;
 
 import java.util.Optional;
 
 /**
- * This is simple solar panel block.
+ * This the solar panel block.
  * @author halvors
  */
-public class BlockSolarPanel extends Block implements Storable, Stateful {
-	public BlockSolarPanel() {
-		add(new StaticBlockRenderer(this)).setTexture((dir) -> Optional.of(ConcentratedSolars.solarPanelTexture));
-		add(new Collider());
-		add(new ItemRenderer(this));
-		add(new Category("buildingBlocks"));
+public class BlockSolarPanel extends BlockBasic implements PacketHandler {
+    public Inventory inventory = new InventorySimple(1);
 
-		/*
-		setBlockName("blockSolarPanel");
+    public BlockSolarPanel() {
+		super();
+
+        add(new StaticBlockRenderer(this)).setTexture((direction) -> {
+            switch (direction) {
+                case UP:
+                    return Optional.of(ConcentratedSolars.solarPanelTextures.get(0));
+
+                case DOWN:
+                    return Optional.of(ConcentratedSolars.solarPanelTextures.get(2));
+
+                default:
+                    return Optional.of(ConcentratedSolars.solarPanelTextures.get(0));
+            }
+        });
+
+        add(new Collider().setBoundingBox(new Cuboid(0.0F, 0.0F, 0.0F, 1.0F, 0.3F, 1.0F)));
+
+        rightClickEvent.add(this::onRightClick);
+
+        /*
+        Not ported features.
+
 		setHardness(3.5F);
 		setResistance(8F);
-		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.3F, 1.0F);
-		setCreativeTab(ConcentratedSolars.tabConcentratedSolars);
 		setStepSound(soundTypeMetal);
 		*/
-	}
+    }
 
-	@Override
-	public String getID() {
-		return "blockSolarPanel";
-	}
+    public void onRightClick(RightClickEvent event) {
+        ConcentratedSolars.getInstance().guiManager.showGui("guiSolarPanel",  event.entity, position());
+
+        Game.network().sync(this);
+    }
+
+    @Override
+    public String getID() {
+        return "blockSolarPanel";
+    }
+}
 
 	/*
 	@Override
@@ -93,4 +112,3 @@ public class BlockSolarPanel extends Block implements Storable, Stateful {
 		return true;
 	}
 	*/
-}
