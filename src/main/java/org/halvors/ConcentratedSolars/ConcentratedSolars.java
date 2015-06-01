@@ -16,9 +16,13 @@ import nova.core.recipes.crafting.ItemIngredient;
 import nova.core.recipes.crafting.ShapedCraftingRecipe;
 import nova.core.render.RenderManager;
 import nova.core.render.texture.BlockTexture;
+import nova.core.render.texture.ItemTexture;
 import org.halvors.ConcentratedSolars.block.BlockSolarPanel;
+import org.halvors.ConcentratedSolars.gui.GuiBasic;
 import org.halvors.ConcentratedSolars.gui.GuiSolarPanel;
+import org.halvors.ConcentratedSolars.items.ItemMirror;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,19 +37,25 @@ public class ConcentratedSolars implements Loadable {
 	// Blocks
 	public static BlockFactory blockSolarPanel;
 
-	// Textures
-	public static List<BlockTexture> solarPanelTextures;
-
 	// Items
 	public static ItemFactory itemSolarPanel;
+	public static ItemFactory itemMirror;
+
+	// Textures
+	/*
+	public static BlockTexture solarPanelTexture;
+	public static BlockTexture solarPanelTextureEdge;
+	*/
+
+	public static List<BlockTexture> solarPanelTextures = new ArrayList<>();
+	public static ItemTexture itemMirrorTexture;
 
 	// GUIs
+	public static GuiFactory guiBasic;
 	public static GuiFactory guiSolarPanel;
 
-	// Creative tab
+	// Category
 	public static Category category = new Category("categoryConcentratedSolars");
-
-	//public static CreativeTabConcentratedSolars tabConcentratedSolars = new CreativeTabConcentratedSolars();
 
 	// Managers
 	private final BlockManager blockManager;
@@ -69,13 +79,15 @@ public class ConcentratedSolars implements Loadable {
 	@Override
 	public void preInit() {
 		addBlocks();
-		addTextures();
-		addTileEntities();
 		addItems();
+		addTextures();
 		addRecipes();
 		addGUIs();
 	}
 
+	/**
+	 * Returns this mod instance.
+	 */
 	public static ConcentratedSolars getInstance() {
 		return instance;
 	}
@@ -85,34 +97,50 @@ public class ConcentratedSolars implements Loadable {
 		blockSolarPanel = blockManager.register(BlockSolarPanel.class);
 	}
 
-	public void addTextures() {
-		// Create textures.
-		solarPanelTextures.add(renderManager.registerTexture(new BlockTexture(Reference.ID, "blockSolarPanel_top")));
-		solarPanelTextures.add(renderManager.registerTexture(new BlockTexture(Reference.ID, "blockSolarPanel_side")));
-		solarPanelTextures.add(renderManager.registerTexture(new BlockTexture(Reference.ID, "blockSolarPanel_down")));
-	}
-
-	public void addTileEntities() {
-		// Register tile entities.
-	}
-
 	public void addItems() {
 		// Create items.
 		itemSolarPanel = itemManager.getItemFromBlock(blockSolarPanel);
+		itemMirror = itemManager.register(ItemMirror.class);
+
+		//Game.itemDictionary().add("mirror", ItemMirror.class);
+	}
+
+	public void addTextures() {
+		// Create textures.
+		/*
+		solarPanelTexture = renderManager.registerTexture(new BlockTexture(Reference.ID, "blockSolarPanel_top"));
+		solarPanelTextureEdge = renderManager.registerTexture(new BlockTexture(Reference.ID, "blockSolarPanel_side"));
+		*/
+
+		solarPanelTextures.add(renderManager.registerTexture(new BlockTexture(Reference.ID, "blockSolarPanel_top")));
+		solarPanelTextures.add(renderManager.registerTexture(new BlockTexture(Reference.ID, "blockSolarPanel_side")));
+		solarPanelTextures.add(renderManager.registerTexture(new BlockTexture(Reference.ID, "blockSolarPanel_bottom")));
+
+		itemMirrorTexture = renderManager.registerTexture(new ItemTexture(Reference.ID, "itemMirror"));
 	}
 
 	public void addRecipes() {
 		// Create recipes.
+		ItemIngredient glassPaneIngredient = ItemIngredient.forDictionary("paneGlass");
 		ItemIngredient ironIngotIngredient = ItemIngredient.forDictionary("ingotIron");
 		ItemIngredient goldIngotIngredient = ItemIngredient.forDictionary("ingotGold");
 		ItemIngredient dustRedstoneIngredient = ItemIngredient.forDictionary("dustRedstone");
 
 		// Register recipes.
-		Game.recipes().addRecipe(new ShapedCraftingRecipe(itemSolarPanel.makeItem(), "AAA-BBB-CBC", goldIngotIngredient, dustRedstoneIngredient, ironIngotIngredient));
+		Game.recipes().addRecipe(new ShapedCraftingRecipe(itemSolarPanel.makeItem(), "AAA-BCB-BDB",
+				glassPaneIngredient,
+				ironIngotIngredient,
+				goldIngotIngredient,
+				dustRedstoneIngredient));
+
+		Game.recipes().addRecipe(new ShapedCraftingRecipe(itemMirror.makeItem(), "AAA-ABA-AAA",
+				glassPaneIngredient,
+				ironIngotIngredient));
 	}
 
 	public void addGUIs() {
 		// Create GUIs.
+		guiBasic = guiManager.register(() -> new GuiBasic());
 		guiSolarPanel = guiManager.register(() -> new GuiSolarPanel());
 	}
 }
