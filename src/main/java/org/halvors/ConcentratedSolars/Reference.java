@@ -13,11 +13,4 @@ public class Reference {
 	public static final String VERSION = MAJOR_VERSION + "." + MINOR_VERSION+ "." + REVISION_VERSION;
 
 	public static final String NOVA_VERSION = "0.0.1";
-
-	/**
-	 * Directory Information
-	 */
-	public static final String DOMAIN = "concentratedsolars";
-	public static final String PREFIX = DOMAIN + ":";
-	public static final String DIRECTORY = "/assets/" + DOMAIN + "/";
 }
