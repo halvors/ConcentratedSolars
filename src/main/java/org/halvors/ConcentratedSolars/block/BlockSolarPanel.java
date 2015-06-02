@@ -23,7 +23,6 @@ public class BlockSolarPanel extends BlockBasic implements PacketHandler {
                 .setTexture((direction) -> Optional.of(ConcentratedSolars.solarPanelTexture)));
         */
 
-
         add(new StaticBlockRenderer(this)).setTexture((direction) -> {
             switch (direction) {
                 case UP:
@@ -38,10 +37,10 @@ public class BlockSolarPanel extends BlockBasic implements PacketHandler {
         });
 
         add(new Collider()
-                .setBoundingBox(new Cuboid(0.0F, 0.0F, 0.0F, 1.0F, 0.3F, 1.0F))
-                .isOpaqueCube(true));
+                .setBoundingBox(new Cuboid(0.0F, 0.0F, 0.0F, 1.0F, 0.2F, 1.0F))
+                .isOpaqueCube(false));
 
-        rightClickEvent.add(this::onRightClick);
+        //rightClickEvent.add(this::onRightClick);
 
         /*
         Not ported features.
@@ -68,32 +67,6 @@ public class BlockSolarPanel extends BlockBasic implements PacketHandler {
 	@Override
 	public TileEntity createNewTileEntity(World world, int metadata) {
 		return new TileEntitySolarPanel();
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		topIcon = iconRegister.registerIcon(Reference.PREFIX
-				+ "blockSolarPanel_top");
-		sideIcon = iconRegister.registerIcon(Reference.PREFIX
-				+ "blockSolarPanel_side");
-		bottomIcon = iconRegister.registerIcon(Reference.PREFIX
-				+ "blockSolarPanel_bottom");
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta) {
-		switch (side) {
-		case 1:
-			return topIcon;
-
-		case 0:
-			return bottomIcon;
-
-		default:
-			return sideIcon;
-		}
 	}
 
 	@Override

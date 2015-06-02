@@ -42,12 +42,11 @@ public class ConcentratedSolars implements Loadable {
 	public static ItemFactory itemMirror;
 
 	// Textures
-	/*
 	public static BlockTexture solarPanelTexture;
 	public static BlockTexture solarPanelTextureEdge;
-	*/
 
 	public static List<BlockTexture> solarPanelTextures = new ArrayList<>();
+
 	public static ItemTexture itemMirrorTexture;
 
 	// GUIs
@@ -107,10 +106,8 @@ public class ConcentratedSolars implements Loadable {
 
 	public void addTextures() {
 		// Create textures.
-		/*
 		solarPanelTexture = renderManager.registerTexture(new BlockTexture(Reference.ID, "blockSolarPanel_top"));
 		solarPanelTextureEdge = renderManager.registerTexture(new BlockTexture(Reference.ID, "blockSolarPanel_side"));
-		*/
 
 		solarPanelTextures.add(renderManager.registerTexture(new BlockTexture(Reference.ID, "blockSolarPanel_top")));
 		solarPanelTextures.add(renderManager.registerTexture(new BlockTexture(Reference.ID, "blockSolarPanel_side")));
