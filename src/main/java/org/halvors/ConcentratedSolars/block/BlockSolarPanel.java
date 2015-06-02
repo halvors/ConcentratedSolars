@@ -12,17 +12,17 @@ import java.util.Optional;
 
 /**
  * This the solar panel block.
+ *
  * @author halvors
  */
 public class BlockSolarPanel extends BlockBasic implements PacketHandler {
     public BlockSolarPanel() {
         super();
 
-        /*
         add(new ConnectedTextureRenderer(this, ConcentratedSolars.solarPanelTextureEdge)
                 .setTexture((direction) -> Optional.of(ConcentratedSolars.solarPanelTexture)));
-        */
 
+        /*
         add(new StaticBlockRenderer(this)).setTexture((direction) -> {
             switch (direction) {
                 case UP:
@@ -35,6 +35,7 @@ public class BlockSolarPanel extends BlockBasic implements PacketHandler {
                     return Optional.of(ConcentratedSolars.solarPanelTextures.get(1));
             }
         });
+        */
 
         add(new Collider()
                 .setBoundingBox(new Cuboid(0.0F, 0.0F, 0.0F, 1.0F, 0.2F, 1.0F))
@@ -67,26 +68,5 @@ public class BlockSolarPanel extends BlockBasic implements PacketHandler {
 	@Override
 	public TileEntity createNewTileEntity(World world, int metadata) {
 		return new TileEntitySolarPanel();
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean isOpaqueCube() {
-		return false;
-	}
-
-	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z,
-			EntityPlayer player, int metadata, float what, float these,
-			float are) {
-		TileEntity tileEntity = world.getTileEntity(x, y, z);
-
-		if (tileEntity == null || player.isSneaking()) {
-			return false;
-		}
-
-		player.openGui(ConcentratedSolars.instance, 0, world, x, y, z);
-
-		return true;
 	}
 	*/

@@ -7,7 +7,9 @@ import org.halvors.ConcentratedSolars.ConcentratedSolars;
 import java.util.Optional;
 
 /**
- * Created by Halvor on 01.06.2015.
+ * This is the mirror item.
+ *
+ * @halvors
  */
 public class ItemMirror extends Item {
     public ItemMirror() {

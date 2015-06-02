@@ -6,6 +6,7 @@ import org.halvors.ConcentratedSolars.ConcentratedSolars;
 
 /**
  * This a basic block.
+ *
  * @author halvors
  */
 public class BlockBasic extends Block {
