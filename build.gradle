@@ -16,7 +16,6 @@ buildscript {
 	}
 	dependencies {
 		classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-//		classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.0'
 		classpath 'us.phildop:gradle-sublimetext-plugin:0.5.3'
 	}
 }
@@ -24,7 +23,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'forge'
 
-version = "0.1"
+version = "0.0.1"
 group = "org.halvors"
 
 minecraft {
@@ -55,6 +54,7 @@ repositories {
 dependencies {
     // The production code uses the SLF4J logging API at compile time
 	compile group: "nova.core", name: "NovaCore", version: nova_version, changing: true
+	//compile group: "com.calclavia.microblock", name: "Microblock", version : "0.0.1", changing: true
 
 	runtime group: "nova.wrapper.mc1710", name: "NovaWrapper-MC1.7.10", version: wrapper_version, changing: true
 }
