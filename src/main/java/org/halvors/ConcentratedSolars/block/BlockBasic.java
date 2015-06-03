@@ -1,6 +1,8 @@
 package org.halvors.ConcentratedSolars.block;
 
 import nova.core.block.Block;
+import nova.core.component.Category;
+import nova.core.component.misc.Collider;
 import nova.core.component.renderer.ItemRenderer;
 import org.halvors.ConcentratedSolars.ConcentratedSolars;
 
@@ -10,9 +12,12 @@ import org.halvors.ConcentratedSolars.ConcentratedSolars;
  * @author halvors
  */
 public class BlockBasic extends Block {
+    protected Collider collider = add(new Collider());
+    protected ItemRenderer itemRenderer = add(new ItemRenderer(this));
+    protected Category category = add(ConcentratedSolars.category);
+
     public BlockBasic() {
-        add(new ItemRenderer(this));
-        add(ConcentratedSolars.category);
+
     }
 
     @Override

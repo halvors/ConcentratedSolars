@@ -1,8 +1,6 @@
 package org.halvors.ConcentratedSolars.block;
 
 import nova.core.block.component.ConnectedTextureRenderer;
-import nova.core.block.component.StaticBlockRenderer;
-import nova.core.component.misc.Collider;
 import nova.core.game.Game;
 import nova.core.network.PacketHandler;
 import nova.core.util.transform.shape.Cuboid;
@@ -16,14 +14,19 @@ import java.util.Optional;
  * @author halvors
  */
 public class BlockSolarPanel extends BlockBasic implements PacketHandler {
+    private ConnectedTextureRenderer renderer = add(new ConnectedTextureRenderer(this, ConcentratedSolars.solarPanelTextureEdge));
+    //private StaticBlockRenderer renderer = add(new StaticBlockRenderer(this));
+
     public BlockSolarPanel() {
         super();
 
-        add(new ConnectedTextureRenderer(this, ConcentratedSolars.solarPanelTextureEdge)
-                .setTexture((direction) -> Optional.of(ConcentratedSolars.solarPanelTexture)));
+        collider.setBoundingBox(new Cuboid(0.0F, 0.0F, 0.0F, 1.0F, 0.2F, 1.0F));
+        collider.isOpaqueCube(false);
+
+        renderer.setTexture((direction) -> Optional.of(ConcentratedSolars.solarPanelTexture));
 
         /*
-        add(new StaticBlockRenderer(this)).setTexture((direction) -> {
+        renderer.setTexture((direction) -> {
             switch (direction) {
                 case UP:
                     return Optional.of(ConcentratedSolars.solarPanelTextures.get(0));
@@ -36,10 +39,6 @@ public class BlockSolarPanel extends BlockBasic implements PacketHandler {
             }
         });
         */
-
-        add(new Collider()
-                .setBoundingBox(new Cuboid(0.0F, 0.0F, 0.0F, 1.0F, 0.2F, 1.0F))
-                .isOpaqueCube(false));
 
         //rightClickEvent.add(this::onRightClick);
 

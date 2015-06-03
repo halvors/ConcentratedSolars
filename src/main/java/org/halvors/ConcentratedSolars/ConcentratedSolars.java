@@ -61,18 +61,14 @@ public class ConcentratedSolars implements Loadable {
 	private final ItemManager itemManager;
 	private final RenderManager renderManager;
 	public final GuiManager guiManager;
-	private final EntityManager entityManager;
-	private final NativeManager nativeManager;
 
-	public ConcentratedSolars(BlockManager blockManager, ItemManager itemManager, RenderManager renderManager, GuiManager guiManager, EntityManager entityManager, NativeManager nativeManager) {
+	public ConcentratedSolars(BlockManager blockManager, ItemManager itemManager, RenderManager renderManager, GuiManager guiManager) {
 		ConcentratedSolars.instance = this;
 
 		this.blockManager = blockManager;
 		this.itemManager = itemManager;
 		this.renderManager = renderManager;
 		this.guiManager = guiManager;
-		this.entityManager = entityManager;
-		this.nativeManager = nativeManager;
 	}
 
 	@Override
@@ -84,8 +80,18 @@ public class ConcentratedSolars implements Loadable {
 		addGUIs();
 	}
 
+	@Override
+	public void init() {
+
+	}
+
+	@Override
+	public void postInit() {
+
+	}
+
 	/**
-	 * Returns this mod instance.
+	 * Returns the instance of this mod.
 	 */
 	public static ConcentratedSolars getInstance() {
 		return instance;
@@ -101,7 +107,10 @@ public class ConcentratedSolars implements Loadable {
 		itemSolarPanel = itemManager.getItemFromBlock(blockSolarPanel);
 		itemMirror = itemManager.register(ItemMirror.class);
 
-		//Game.itemDictionary().add("mirror", ItemMirror.class);
+		// Register items in the dictionary.
+		// TODO: Is this the right way to do this?
+		Game.itemDictionary().add("mirror", itemMirror.getID());
+		Game.itemDictionary().add("solarPanel", itemSolarPanel.getID());
 	}
 
 	public void addTextures() {
