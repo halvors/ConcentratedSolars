@@ -1,6 +1,5 @@
 package org.halvors.ConcentratedSolars.items;
 
-import nova.core.item.Item;
 import nova.core.render.texture.ItemTexture;
 import org.halvors.ConcentratedSolars.ConcentratedSolars;
 
@@ -11,9 +10,9 @@ import java.util.Optional;
  *
  * @halvors
  */
-public class ItemMirror extends Item {
+public class ItemMirror extends ItemBasic {
     public ItemMirror() {
-        add(ConcentratedSolars.category);
+
     }
 
     @Override
