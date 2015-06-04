@@ -63,7 +63,7 @@ public class ConcentratedSolars implements Loadable {
 	public final GuiManager guiManager;
 
 	public ConcentratedSolars(BlockManager blockManager, ItemManager itemManager, RenderManager renderManager, GuiManager guiManager) {
-		ConcentratedSolars.instance = this;
+		instance = this;
 
 		this.blockManager = blockManager;
 		this.itemManager = itemManager;
