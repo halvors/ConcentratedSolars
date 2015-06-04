@@ -2,7 +2,7 @@
 # @author halvors
 
 # Blocks
-tile.blockSolarPanel.name=Solar panel
+block.blockSolarPanel.name=Solar panel
 
 # Category
 itemGroup.categoryConcentratedSolars=Concentrated Solars
