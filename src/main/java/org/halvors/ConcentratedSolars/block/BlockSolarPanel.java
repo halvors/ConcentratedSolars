@@ -1,8 +1,6 @@
 package org.halvors.ConcentratedSolars.block;
 
 import nova.core.block.component.ConnectedTextureRenderer;
-import nova.core.game.Game;
-import nova.core.network.PacketHandler;
 import nova.core.util.transform.shape.Cuboid;
 import org.halvors.ConcentratedSolars.ConcentratedSolars;
 
@@ -13,7 +11,7 @@ import java.util.Optional;
  *
  * @author halvors
  */
-public class BlockSolarPanel extends BlockBasic implements PacketHandler {
+public class BlockSolarPanel extends BlockBasic {
     private ConnectedTextureRenderer renderer = add(new ConnectedTextureRenderer(this, ConcentratedSolars.solarPanelTextureEdge));
     //private StaticBlockRenderer renderer = add(new StaticBlockRenderer(this));
 
@@ -40,7 +38,7 @@ public class BlockSolarPanel extends BlockBasic implements PacketHandler {
         });
         */
 
-        //rightClickEvent.add(this::onRightClick);
+        rightClickEvent.add(this::onRightClick);
 
         /*
         Not ported features.
@@ -52,9 +50,9 @@ public class BlockSolarPanel extends BlockBasic implements PacketHandler {
     }
 
     public void onRightClick(RightClickEvent event) {
-        ConcentratedSolars.getInstance().guiManager.showGui("guiBasic",  event.entity, position());
+        game.guiManager.showGui("guiBasic",  event.entity, position());
 
-        Game.network().sync(this);
+        game.networkManager.sync(this);
     }
 
     @Override
@@ -63,9 +61,9 @@ public class BlockSolarPanel extends BlockBasic implements PacketHandler {
     }
 }
 
-	/*
-	@Override
-	public TileEntity createNewTileEntity(World world, int metadata) {
-		return new TileEntitySolarPanel();
-	}
-	*/
+/*
+@Override
+public TileEntity createNewTileEntity(World world, int metadata) {
+    return new TileEntitySolarPanel();
+}
+*/

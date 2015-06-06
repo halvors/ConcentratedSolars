@@ -12,6 +12,8 @@ import org.halvors.ConcentratedSolars.ConcentratedSolars;
  * @author halvors
  */
 public class BlockBasic extends Block {
+    protected final ConcentratedSolars game = ConcentratedSolars.getInstance();
+
     protected Collider collider = add(new Collider());
     protected ItemRenderer itemRenderer = add(new ItemRenderer(this));
     protected Category category = add(ConcentratedSolars.category);

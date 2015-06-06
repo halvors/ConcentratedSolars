@@ -3,8 +3,6 @@ package org.halvors.ConcentratedSolars;
 import nova.core.block.BlockFactory;
 import nova.core.block.BlockManager;
 import nova.core.component.Category;
-import nova.core.entity.EntityManager;
-import nova.core.game.Game;
 import nova.core.gui.factory.GuiFactory;
 import nova.core.gui.factory.GuiManager;
 import nova.core.item.ItemFactory;
@@ -12,6 +10,8 @@ import nova.core.item.ItemManager;
 import nova.core.loader.Loadable;
 import nova.core.loader.NovaMod;
 import nova.core.nativewrapper.NativeManager;
+import nova.core.network.NetworkManager;
+import nova.core.recipes.RecipeManager;
 import nova.core.recipes.crafting.ItemIngredient;
 import nova.core.recipes.crafting.ShapedCraftingRecipe;
 import nova.core.render.RenderManager;
@@ -57,18 +57,30 @@ public class ConcentratedSolars implements Loadable {
 	public static Category category = new Category("categoryConcentratedSolars");
 
 	// Managers
-	private final BlockManager blockManager;
-	private final ItemManager itemManager;
-	private final RenderManager renderManager;
-	public final GuiManager guiManager;
+	public final BlockManager blockManager;
+	public final ItemManager itemManager;
+	public final RenderManager renderManager;
+    public final NativeManager nativeManager;
+    public final NetworkManager networkManager;
+	public final RecipeManager recipeManager;
+    public final GuiManager guiManager;
 
-	public ConcentratedSolars(BlockManager blockManager, ItemManager itemManager, RenderManager renderManager, GuiManager guiManager) {
+	public ConcentratedSolars(BlockManager blockManager,
+                              ItemManager itemManager,
+                              RenderManager renderManager,
+                              NativeManager nativeManager,
+                              NetworkManager networkManager,
+                              RecipeManager recipeManager,
+                              GuiManager guiManager) {
 		instance = this;
 
 		this.blockManager = blockManager;
 		this.itemManager = itemManager;
 		this.renderManager = renderManager;
-		this.guiManager = guiManager;
+        this.nativeManager = nativeManager;
+        this.networkManager = networkManager;
+		this.recipeManager = recipeManager;
+        this.guiManager = guiManager;
 	}
 
 	@Override
@@ -109,8 +121,8 @@ public class ConcentratedSolars implements Loadable {
 
 		// Register items in the dictionary.
 		// TODO: Is this the right way to do this?
-		Game.itemDictionary().add("mirror", itemMirror.getID());
-		Game.itemDictionary().add("solarPanel", itemSolarPanel.getID());
+		//Game.itemDictionary().add("mirror", itemMirror.getID());
+		//Game.itemDictionary().add("solarPanel", itemSolarPanel.getID());
 	}
 
 	public void addTextures() {
@@ -133,13 +145,13 @@ public class ConcentratedSolars implements Loadable {
 		ItemIngredient dustRedstoneIngredient = ItemIngredient.forDictionary("dustRedstone");
 
 		// Register recipes.
-		Game.recipes().addRecipe(new ShapedCraftingRecipe(itemSolarPanel.makeItem(), "AAA-BCB-BDB",
+		recipeManager.addRecipe(new ShapedCraftingRecipe(itemSolarPanel.makeItem(), "AAA-BCB-BDB",
 				glassPaneIngredient,
 				ironIngotIngredient,
 				goldIngotIngredient,
 				dustRedstoneIngredient));
 
-		Game.recipes().addRecipe(new ShapedCraftingRecipe(itemMirror.makeItem(), "AAA-ABA-AAA",
+		recipeManager.addRecipe(new ShapedCraftingRecipe(itemMirror.makeItem(), "AAA-ABA-AAA",
 				glassPaneIngredient,
 				ironIngotIngredient));
 	}
