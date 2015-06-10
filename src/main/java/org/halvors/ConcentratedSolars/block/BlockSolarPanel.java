@@ -1,7 +1,7 @@
 package org.halvors.ConcentratedSolars.block;
 
 import nova.core.block.component.ConnectedTextureRenderer;
-import nova.core.util.transform.shape.Cuboid;
+import nova.core.util.shape.Cuboid;
 import org.halvors.ConcentratedSolars.ConcentratedSolars;
 
 import java.util.Optional;
