@@ -10,7 +10,9 @@ import org.halvors.ConcentratedSolars.ConcentratedSolars;
  * @author halvors
  */
 public class ItemBasic extends Item {
-    protected Category category = add(ConcentratedSolars.category);
+    protected ConcentratedSolars game = ConcentratedSolars.getInstance();
+
+    protected Category category = add(game.category);
 
     public ItemBasic() {
 
