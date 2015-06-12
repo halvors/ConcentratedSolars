@@ -1,6 +1,8 @@
 package org.halvors.ConcentratedSolars.block;
 
+import nova.core.block.Stateful;
 import nova.core.block.component.ConnectedTextureRenderer;
+import nova.core.retention.Storable;
 import nova.core.util.shape.Cuboid;
 import org.halvors.ConcentratedSolars.ConcentratedSolars;
 
@@ -11,7 +13,7 @@ import java.util.Optional;
  *
  * @author halvors
  */
-public class BlockSolarPanel extends BlockBasic {
+public class BlockSolarPanel extends BlockBasic implements Stateful {
     private ConnectedTextureRenderer renderer = add(new ConnectedTextureRenderer(this, ConcentratedSolars.solarPanelTextureEdge));
     //private StaticBlockRenderer renderer = add(new StaticBlockRenderer(this));
 
@@ -38,7 +40,7 @@ public class BlockSolarPanel extends BlockBasic {
         });
         */
 
-        rightClickEvent.add(this::onRightClick);
+        events.on(RightClickEvent.class).bind(this::onRightClick);
 
         /*
         Not ported features.

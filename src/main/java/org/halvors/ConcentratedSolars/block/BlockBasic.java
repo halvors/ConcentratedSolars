@@ -16,7 +16,7 @@ public class BlockBasic extends Block {
 
     protected Collider collider = add(new Collider());
     protected ItemRenderer itemRenderer = add(new ItemRenderer(this));
-    protected Category category = add(ConcentratedSolars.category);
+    protected Category category = add(game.category);
 
     public BlockBasic() {
 

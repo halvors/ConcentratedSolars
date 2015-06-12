@@ -54,7 +54,7 @@ public class ConcentratedSolars implements Loadable {
 	public static GuiFactory guiSolarPanel;
 
 	// Category
-	public static Category category = new Category("categoryConcentratedSolars");
+	public final Category category = new Category("categoryConcentratedSolars");
 
 	// Managers
 	public final BlockManager blockManager;
