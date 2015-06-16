@@ -4,5 +4,8 @@
 # Blocks
 block.blockSolarPanel.name=Solar panel
 
+# Items
+item.itemMirror.name=Mirror
+
 # Category
 itemGroup.categoryConcentratedSolars=Concentrated Solars
